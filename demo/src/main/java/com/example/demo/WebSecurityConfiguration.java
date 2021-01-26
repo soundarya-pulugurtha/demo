@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -12,13 +11,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
 
         http .csrf().disable() .authorizeRequests() .anyRequest().permitAll();
-
-        /*http.csrf().disable().authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST,"/addNewViewer").permitAll()
-                .antMatchers(HttpMethod.GET,"getDetails").permitAll()
-                .antMatchers(HttpMethod.GET,"getDetails/*").permitAll()
-                .anyRequest().authenticated();*/
     }
 
 }

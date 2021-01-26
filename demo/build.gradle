@@ -29,14 +29,13 @@ dependencies {
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	implementation("org.springdoc:springdoc-openapi-ui:1.2.26")
 	implementation("org.projectlombok:lombok:1.18.10")
+	implementation("javax.xml.bind:jaxb-api:2.3.0")
 
 	annotationProcessor("org.projectlombok:lombok:1.18.10")
 	compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
 	implementation("com.h2database:h2:1.4.197")
-	//implementation("org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE")
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	runtimeOnly 'mysql:mysql-connector-java'
-	//implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
