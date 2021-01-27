@@ -1,36 +1,35 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Component
 public class ViewerDetailService {
 
-    @Autowired
-    private ViewerDetailsRepository viewerDetailsRepository;
+    ConcurrentMap<String, ViewerDetails> viewers = new ConcurrentHashMap<>();
+
 
     public List<ViewerDetails> getAllViewers(){
-        List<ViewerDetails> viewerDetails = new ArrayList<>();
-        viewerDetailsRepository.findAll().forEach(viewerDetails1 -> viewerDetails.add(viewerDetails1));
-        return viewerDetails;
+        return new ArrayList<ViewerDetails>(viewers.values());
     }
 
     public ViewerDetails getViewerById(String id){
-        return viewerDetailsRepository.findById(id).get();
+        return viewers.get(id);
     }
 
     public void saveViewer(ViewerDetails viewerDetails){
-        viewerDetailsRepository.save(viewerDetails);
+        viewers.put(viewerDetails.getId(),viewerDetails);
     }
 
     public void updateViewerAge(String id, int age){
-        viewerDetailsRepository.updateViewerAge(id, age);
+        viewers.get(id).setAge(age);
     }
 
     public void deleteViewer(String id){
-        viewerDetailsRepository.deleteById(id);
+        viewers.remove(id);
     }
 }
